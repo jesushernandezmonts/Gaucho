@@ -5,39 +5,42 @@ import { useEffect, useRef, useState } from "react"
 type AnimationVariant = "fade-in" | "reveal" | "reveal-left" | "reveal-right" | "reveal-scale"
 
 export default function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
-  variant: AnimationVariant = "reveal",
-  threshold = 0.05
+  variant: AnimationVariant = "reveal"
 ) {
   const ref = useRef<T>(null)
-  const [revealed, setRevealed] = useState(false)
+  const [className, setClassName] = useState("")
 
   useEffect(() => {
     const el = ref.current
-    if (!el || revealed) return
+    if (!el) return
 
-    // Fallback: si no soporta IntersectionObserver (raro pero seguro)
+    // Mobile/small screens: no animations, show immediately
+    if (window.innerWidth < 768) {
+      setClassName("")
+      return
+    }
+
+    // Desktop: use IntersectionObserver
     if (typeof IntersectionObserver === "undefined") {
-      setRevealed(true)
+      setClassName(`animate-${variant}`)
       return
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setRevealed(true)
+          setClassName(`animate-${variant}`)
           observer.unobserve(el)
         }
       },
-      { threshold, rootMargin: "0px 0px -20px 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -20px 0px" }
     )
 
+    // Start invisible
+    setClassName("opacity-0")
     observer.observe(el)
     return () => observer.disconnect()
-  }, [threshold, revealed])
+  }, [variant])
 
-  // En mobile, siempre mostrar con animación inmediata para evitar el parpadeo
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 640
-  const className = revealed || isMobile ? `animate-${variant === "fade-in" ? "fade-in" : variant}` : "opacity-0"
-
-  return { ref, className, revealed }
+  return { ref, className }
 }
