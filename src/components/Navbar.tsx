@@ -80,25 +80,27 @@ export default function Navbar() {
 
         {/* Mobile Nav - Full screen drawer */}
         <div
-          className={`fixed md:hidden top-0 left-0 w-full h-full bg-charcoal/98 backdrop-blur-xl flex flex-col items-center justify-center gap-2 transition-all duration-500 ease-out z-40 ${
+          className={`fixed md:hidden top-0 left-0 w-full h-dvh bg-charcoal flex flex-col items-center justify-center gap-1 transition-all duration-400 ease-out z-40 ${
             mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           }`}
         >
-          {navLinks.map((link) => (
+          <div className="flex flex-col items-center gap-1 w-full px-6">
+            {navLinks.map((link) => (
+              <button
+                key={link.href}
+                onClick={() => handleNav(link.href)}
+                className="text-white/80 hover:text-white px-6 py-3.5 rounded-xl text-base font-medium transition-all duration-200 hover:bg-white/10 w-full max-w-[280px] text-center active:bg-white/5"
+              >
+                {link.label}
+              </button>
+            ))}
             <button
-              key={link.href}
-              onClick={() => handleNav(link.href)}
-              className="text-white/70 hover:text-white px-6 py-3 rounded-lg text-lg font-medium transition-all duration-200 hover:bg-white/5 w-full max-w-[240px] text-center"
+              onClick={() => handleNav("#reservaciones")}
+              className="bg-gold hover:bg-gold-light text-chocolate font-bold px-8 py-3.5 rounded-full text-base transition-all duration-300 mt-4 w-full max-w-[280px] text-center shadow-gold"
             >
-              {link.label}
+              Reservar
             </button>
-          ))}
-          <button
-            onClick={() => handleNav("#reservaciones")}
-            className="bg-gold hover:bg-gold-light text-chocolate font-bold px-8 py-3 rounded-full text-lg transition-all duration-300 mt-4 w-full max-w-[240px] text-center"
-          >
-            Reservar
-          </button>
+          </div>
         </div>
       </div>
     </header>
