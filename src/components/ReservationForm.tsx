@@ -76,22 +76,22 @@ export default function ReservationForm() {
       <div className="absolute bottom-20 left-20 w-48 h-48 bg-white/[0.02] rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-        <div ref={sectionRef} className={`text-center mb-10 sm:mb-14 md:mb-18 ${sectionClass}`}>
-          <span className="inline-block text-[10px] md:text-xs font-semibold tracking-[3px] uppercase text-gold bg-gold/15 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-3 sm:mb-4">
+        <div ref={sectionRef} className={`text-center mb-8 sm:mb-14 md:mb-18 ${sectionClass}`}>
+          <span className="inline-block text-[10px] sm:text-xs font-semibold tracking-[3px] uppercase text-gold bg-gold/15 px-2.5 sm:px-4 py-1 sm:py-2 rounded-full mb-2 sm:mb-4">
             Reservaciones
           </span>
-          <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold text-white leading-tight">
+          <h2 className="font-display text-xl sm:text-3xl md:text-5xl font-bold text-white leading-tight">
             Reserva tu experiencia
           </h2>
-          <p className="text-white/40 text-sm sm:text-base mt-3 max-w-md mx-auto">
+          <p className="text-white/40 text-xs sm:text-base mt-2 sm:mt-3 max-w-md mx-auto px-4">
             Vive una experiencia gaucha inolvidable
           </p>
-          <div className="flex items-center justify-center gap-3 mt-4 sm:mt-5">
-            <span className="block w-10 sm:w-14 md:w-20 h-0.5 bg-gradient-to-r from-transparent via-gold to-transparent" />
-            <svg className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="flex items-center justify-center gap-2 sm:gap-3 mt-3 sm:mt-5">
+            <span className="block w-8 sm:w-14 md:w-20 h-px sm:h-0.5 bg-gradient-to-r from-transparent via-gold to-transparent" />
+            <svg className="w-3 sm:w-4 h-3 sm:h-4 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
-            <span className="block w-10 sm:w-14 md:w-20 h-0.5 bg-gradient-to-r from-transparent via-gold to-transparent" />
+            <span className="block w-8 sm:w-14 md:w-20 h-px sm:h-0.5 bg-gradient-to-r from-transparent via-gold to-transparent" />
           </div>
         </div>
 

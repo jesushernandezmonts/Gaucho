@@ -55,17 +55,17 @@ export default function About() {
   }
 
   return (
-    <section id="nosotros" className="py-16 sm:py-20 md:py-28 bg-cream relative overflow-hidden">
+    <section id="nosotros" className="py-14 sm:py-20 md:py-28 bg-cream relative overflow-hidden">
       {/* Fondo decorativo */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-sage/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
         <SectionHeader tag="Nuestra Historia" title="Tradición que trasciende" icon={
-          <svg className="w-3.5 sm:w-4 h-3.5 sm:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+          <svg className="w-3 sm:w-4 h-3 sm:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
         } />
 
-        <div className="grid md:grid-cols-2 gap-8 sm:gap-10 md:gap-16 items-center">
+        <div className="grid md:grid-cols-2 gap-6 sm:gap-10 md:gap-16 items-center">
           {/* Image */}
           <div ref={imageRef} className={`relative order-2 md:order-1 ${imageClass}`}>
             <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
@@ -73,9 +73,8 @@ export default function About() {
                 src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80"
                 alt="Restaurante Niño Gaucho"
                 loading="lazy"
-                className="w-full h-[250px] sm:h-[320px] md:h-[460px] object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-[220px] sm:h-[320px] md:h-[460px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              {/* Overlay decorativo */}
               <div className="absolute inset-0 bg-gradient-to-tr from-chocolate/20 via-transparent to-transparent" />
             </div>
             <div className="absolute -bottom-3 -right-3 w-full h-full border-2 border-gold/30 rounded-2xl -z-10 hidden md:block" />
@@ -83,10 +82,10 @@ export default function About() {
 
           {/* Text */}
           <div ref={textRef} className={`order-1 md:order-2 ${textClass}`}>
-            <h3 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-chocolate mb-4 sm:mb-5">
+            <h3 className="font-display text-lg sm:text-2xl md:text-3xl font-bold text-chocolate mb-3 sm:mb-5">
               El espíritu gaucho en cada detalle
             </h3>
-            <div className="space-y-3 sm:space-y-4 text-chocolate-light leading-relaxed text-sm sm:text-[15px] md:text-base">
+            <div className="space-y-2 sm:space-y-4 text-chocolate-light leading-relaxed text-sm sm:text-[15px] md:text-base">
               <p>
                 En <strong className="text-chocolate">Niño Gaucho</strong>, celebramos la rica herencia de la cultura argentina
                 a través de una experiencia culinaria y de hospedaje sin igual. Nuestro restaurante ofrece los cortes de carne
@@ -99,7 +98,7 @@ export default function About() {
             </div>
 
             {/* Stats */}
-            <div ref={statsRef} className="grid grid-cols-3 gap-3 sm:gap-4 mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-chocolate/10">
+            <div ref={statsRef} className="grid grid-cols-3 gap-2 sm:gap-4 mt-5 sm:mt-8 pt-4 sm:pt-8 border-t border-chocolate/10">
               {[
                 { count: 12, label: "Años de tradición" },
                 { count: 45, label: "Platos exclusivos" },
@@ -109,7 +108,7 @@ export default function About() {
                   <span className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-gold block leading-none" data-count={s.count}>
                     0
                   </span>
-                  <span className="text-[11px] sm:text-xs md:text-sm text-chocolate-light font-medium mt-1 sm:mt-1.5 block">{s.label}</span>
+                  <span className="text-[10px] sm:text-xs md:text-sm text-chocolate-light font-medium mt-1 sm:mt-1.5 block">{s.label}</span>
                 </div>
               ))}
             </div>
@@ -123,15 +122,15 @@ export default function About() {
 function SectionHeader({ tag, title, icon }: { tag: string; title: string; icon: React.ReactNode }) {
   const { ref, className } = useScrollReveal("reveal")
   return (
-    <div ref={ref} className={`text-center mb-10 sm:mb-14 md:mb-18 ${className}`}>
-      <span className="inline-block text-[10px] md:text-xs font-semibold tracking-[3px] uppercase text-sage-dark bg-sage/20 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-3 sm:mb-4">
+    <div ref={ref} className={`text-center mb-8 sm:mb-14 md:mb-18 ${className}`}>
+      <span className="inline-block text-[10px] sm:text-xs font-semibold tracking-[3px] uppercase text-sage-dark bg-sage/20 px-2.5 sm:px-4 py-1 sm:py-2 rounded-full mb-2 sm:mb-4">
         {tag}
       </span>
-      <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold text-chocolate leading-tight">{title}</h2>
-      <div className="flex items-center justify-center gap-3 mt-4 sm:mt-5">
-        <span className="block w-10 sm:w-14 md:w-20 h-0.5 bg-gradient-to-r from-transparent via-gold to-transparent" />
+      <h2 className="font-display text-xl sm:text-3xl md:text-5xl font-bold text-chocolate leading-tight">{title}</h2>
+      <div className="flex items-center justify-center gap-2 sm:gap-3 mt-3 sm:mt-5">
+        <span className="block w-8 sm:w-14 md:w-20 h-px sm:h-0.5 bg-gradient-to-r from-transparent via-gold to-transparent" />
         {icon}
-        <span className="block w-10 sm:w-14 md:w-20 h-0.5 bg-gradient-to-r from-transparent via-gold to-transparent" />
+        <span className="block w-8 sm:w-14 md:w-20 h-px sm:h-0.5 bg-gradient-to-r from-transparent via-gold to-transparent" />
       </div>
     </div>
   )
