@@ -3,14 +3,14 @@ import GauchoLogo from "./GauchoLogo"
 import useScrollReveal from "@/lib/useScrollReveal"
 
 export default function Footer() {
-  const { ref, className } = useScrollReveal("reveal")
+  const { ref } = useScrollReveal("fade-up")
 
   return (
     <footer className="bg-charcoal text-white/60 relative overflow-hidden">
       {/* Decoración */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
 
-      <div ref={ref} className={`max-w-7xl mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-0 relative ${className}`}>
+      <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-0 relative">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 pb-10 sm:pb-12 border-b border-white/5">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">

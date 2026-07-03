@@ -14,8 +14,8 @@ const categories = [
 
 export default function Menu() {
   const [activeCat, setActiveCat] = useState("entradas")
-  const { ref: headerRef, className: headerClass } = useScrollReveal("reveal")
-  const { ref: gridRef, className: gridClass } = useScrollReveal("reveal")
+  const { ref: headerRef } = useScrollReveal("fade-up")
+  const { ref: gridRef } = useScrollReveal("fade-up")
 
   const activeItems = menuItems.find((c) => c.category === activeCat)?.items || []
 
@@ -26,7 +26,7 @@ export default function Menu() {
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-white/[0.02] rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-        <div ref={headerRef} className={`text-center mb-8 sm:mb-14 ${headerClass}`}>
+        <div ref={headerRef} className={`text-center mb-8 sm:mb-14`}>
           <span className="inline-block text-[10px] sm:text-xs font-semibold tracking-[3px] uppercase text-gold bg-gold/15 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-2 sm:mb-4">
             Nuestra Cocina
           </span>
@@ -56,7 +56,7 @@ export default function Menu() {
         </div>
 
         {/* Grid - 1 col on mobile, 2 on sm, 3 on lg */}
-        <div ref={gridRef} className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5 ${gridClass}`}>
+        <div ref={gridRef} className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5`}>
           {activeItems.map((item, i) => (
             <div
               key={item.name}

@@ -6,7 +6,7 @@ import useScrollReveal from "@/lib/useScrollReveal"
 
 export default function Testimonials() {
   const [current, setCurrent] = useState(0)
-  const { ref: sectionRef, className: sectionClass } = useScrollReveal("reveal")
+  const { ref: sectionRef } = useScrollReveal("fade-scale")
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -24,7 +24,7 @@ export default function Testimonials() {
       <div className="absolute bottom-0 right-0 w-64 h-64 bg-white/[0.02] rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-        <div ref={sectionRef} className={`text-center mb-8 sm:mb-12 ${sectionClass}`}>
+        <div ref={sectionRef} className={`text-center mb-8 sm:mb-12`}>
           <span className="inline-block text-[10px] sm:text-xs font-semibold tracking-[3px] uppercase text-gold bg-gold/15 px-2.5 sm:px-4 py-1 sm:py-2 rounded-full mb-2 sm:mb-4">
             Testimonios
           </span>

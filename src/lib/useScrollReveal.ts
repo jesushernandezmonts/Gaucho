@@ -1,46 +1,74 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 
-type AnimationVariant = "fade-in" | "reveal" | "reveal-left" | "reveal-right" | "reveal-scale"
+type Variant = "fade-up" | "fade-left" | "fade-right" | "fade-scale" | "fade-in"
+
+const variantStyles: Record<Variant, { transform: string; transition: string }> = {
+  "fade-up": {
+    transform: "translateY(30px)",
+    transition: "opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1)",
+  },
+  "fade-left": {
+    transform: "translateX(-30px)",
+    transition: "opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1)",
+  },
+  "fade-right": {
+    transform: "translateX(30px)",
+    transition: "opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1)",
+  },
+  "fade-scale": {
+    transform: "scale(0.9)",
+    transition: "opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1)",
+  },
+  "fade-in": {
+    transform: "translateY(20px)",
+    transition: "opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1)",
+  },
+}
 
 export default function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
-  variant: AnimationVariant = "reveal"
+  variant: Variant = "fade-up"
 ) {
   const ref = useRef<T>(null)
-  const [className, setClassName] = useState("")
 
   useEffect(() => {
     const el = ref.current
     if (!el) return
 
-    // Mobile/small screens: no animations, show immediately
-    if (window.innerWidth < 768) {
-      setClassName("")
-      return
-    }
+    const style = variantStyles[variant]
 
-    // Desktop: use IntersectionObserver
+    // Start invisible (client-side only — no hydration mismatch)
+    el.style.opacity = "0"
+    el.style.transform = style.transform
+    el.style.transition = style.transition
+    el.style.willChange = "transform, opacity"
+
     if (typeof IntersectionObserver === "undefined") {
-      setClassName(`animate-${variant}`)
+      el.style.opacity = "1"
+      el.style.transform = "translateY(0) scale(1)"
+      el.style.transition = "none"
       return
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setClassName(`animate-${variant}`)
+          el.style.opacity = "1"
+          el.style.transform = "translateY(0) scale(1)"
           observer.unobserve(el)
         }
       },
-      { threshold: 0.1, rootMargin: "0px 0px -20px 0px" }
+      { threshold: 0.05 }
     )
 
-    // Start invisible
-    setClassName("opacity-0")
-    observer.observe(el)
+    // Small delay for first render
+    requestAnimationFrame(() => {
+      observer.observe(el)
+    })
+
     return () => observer.disconnect()
   }, [variant])
 
-  return { ref, className }
+  return { ref }
 }

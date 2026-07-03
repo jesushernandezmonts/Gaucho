@@ -3,8 +3,8 @@ import { galleryImages } from "@/lib/constants"
 import useScrollReveal from "@/lib/useScrollReveal"
 
 export default function Gallery() {
-  const { ref: headerRef, className: headerClass } = useScrollReveal("reveal")
-  const { ref: gridRef, className: gridClass } = useScrollReveal("reveal")
+  const { ref: headerRef } = useScrollReveal("fade-up")
+  const { ref: gridRef } = useScrollReveal("fade-up")
 
   return (
     <section id="galeria" className="py-14 sm:py-20 md:py-28 bg-cream relative overflow-hidden">
@@ -12,7 +12,7 @@ export default function Gallery() {
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-cream-warm/50 to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-6 sm:mb-10">
-        <div ref={headerRef} className={`text-center ${headerClass}`}>
+        <div ref={headerRef} className={`text-center`}>
           <span className="inline-block text-[10px] sm:text-xs font-semibold tracking-[3px] uppercase text-sage-dark bg-sage/20 px-2.5 sm:px-4 py-1 sm:py-2 rounded-full mb-2 sm:mb-4">
             Galería
           </span>
@@ -30,7 +30,7 @@ export default function Gallery() {
         </div>
       </div>
 
-      <div ref={gridRef} className={`grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-2 px-1 md:px-2 ${gridClass}`}>
+      <div ref={gridRef} className={`grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-2 px-1 md:px-2`}>
         {galleryImages.map((img, i) => (
           <div
             key={img.alt}

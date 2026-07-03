@@ -21,7 +21,7 @@ export default function ReservationForm() {
   const [errors, setErrors] = useState<Partial<FormData>>({})
   const [submitting, setSubmitting] = useState(false)
   const [success, setSuccess] = useState(false)
-  const { ref: sectionRef, className: sectionClass } = useScrollReveal("reveal")
+  const { ref: sectionRef } = useScrollReveal("fade-up")
 
   useEffect(() => {
     if (success) {
@@ -76,7 +76,7 @@ export default function ReservationForm() {
       <div className="absolute bottom-20 left-20 w-48 h-48 bg-white/[0.02] rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-        <div ref={sectionRef} className={`text-center mb-8 sm:mb-14 md:mb-18 ${sectionClass}`}>
+        <div ref={sectionRef} className={`text-center mb-8 sm:mb-14 md:mb-18`}>
           <span className="inline-block text-[10px] sm:text-xs font-semibold tracking-[3px] uppercase text-gold bg-gold/15 px-2.5 sm:px-4 py-1 sm:py-2 rounded-full mb-2 sm:mb-4">
             Reservaciones
           </span>

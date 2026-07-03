@@ -10,8 +10,8 @@ const featureIcons: Record<string, string> = {
 }
 
 export default function Rooms() {
-  const { ref: headerRef, className: headerClass } = useScrollReveal("reveal")
-  const { ref: gridRef, className: gridClass } = useScrollReveal("reveal")
+  const { ref: headerRef } = useScrollReveal("fade-up")
+  const { ref: gridRef } = useScrollReveal("fade-up")
 
   return (
     <section id="habitaciones" className="py-14 sm:py-20 md:py-28 bg-cream relative overflow-hidden">
@@ -20,7 +20,7 @@ export default function Rooms() {
       <div className="absolute bottom-10 left-20 w-64 h-64 border border-sage/20 rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-        <div ref={headerRef} className={`text-center mb-8 sm:mb-14 ${headerClass}`}>
+        <div ref={headerRef} className={`text-center mb-8 sm:mb-14`}>
           <span className="inline-block text-[10px] sm:text-xs font-semibold tracking-[3px] uppercase text-sage-dark bg-sage/20 px-2.5 sm:px-4 py-1 sm:py-2 rounded-full mb-2 sm:mb-4">
             Nuestro Hotel
           </span>
@@ -32,7 +32,7 @@ export default function Rooms() {
           </div>
         </div>
 
-        <div ref={gridRef} className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6 md:gap-8 ${gridClass}`}>
+        <div ref={gridRef} className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6 md:gap-8`}>
           {rooms.map((room, i) => (
             <div
               key={room.name}

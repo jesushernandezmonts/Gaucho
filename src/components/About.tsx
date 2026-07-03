@@ -5,8 +5,8 @@ import useScrollReveal from "@/lib/useScrollReveal"
 
 export default function About() {
   const statsRef = useRef<HTMLDivElement>(null)
-  const { ref: textRef, className: textClass } = useScrollReveal("reveal-right")
-  const { ref: imageRef, className: imageClass } = useScrollReveal("reveal-left")
+  const { ref: textRef } = useScrollReveal("fade-right")
+  const { ref: imageRef } = useScrollReveal("fade-left")
 
   useEffect(() => {
     const el = statsRef.current
@@ -67,7 +67,7 @@ export default function About() {
 
         <div className="grid md:grid-cols-2 gap-6 sm:gap-10 md:gap-16 items-center">
           {/* Image */}
-          <div ref={imageRef} className={`relative order-2 md:order-1 ${imageClass}`}>
+          <div ref={imageRef} className={`relative order-2 md:order-1`}>
             <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
               <img
                 src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80"
@@ -81,7 +81,7 @@ export default function About() {
           </div>
 
           {/* Text */}
-          <div ref={textRef} className={`order-1 md:order-2 ${textClass}`}>
+          <div ref={textRef} className={`order-1 md:order-2`}>
             <h3 className="font-display text-lg sm:text-2xl md:text-3xl font-bold text-chocolate mb-3 sm:mb-5">
               El espíritu gaucho en cada detalle
             </h3>
@@ -120,9 +120,9 @@ export default function About() {
 }
 
 function SectionHeader({ tag, title, icon }: { tag: string; title: string; icon: React.ReactNode }) {
-  const { ref, className } = useScrollReveal("reveal")
+  const { ref } = useScrollReveal("fade-up")
   return (
-    <div ref={ref} className={`text-center mb-8 sm:mb-14 md:mb-18 ${className}`}>
+    <div ref={ref} className={`text-center mb-8 sm:mb-14 md:mb-18`}>
       <span className="inline-block text-[10px] sm:text-xs font-semibold tracking-[3px] uppercase text-sage-dark bg-sage/20 px-2.5 sm:px-4 py-1 sm:py-2 rounded-full mb-2 sm:mb-4">
         {tag}
       </span>
