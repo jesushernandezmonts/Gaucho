@@ -83,44 +83,40 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Nav - OUTSIDE the header to avoid clipping */}
-      <div
-        className={`fixed inset-0 z-[55] md:hidden transition-opacity duration-300 ${
-          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
-      >
-        {/* Backdrop */}
+      {/* Mobile Menu - simple show/hide with display */}
+      {mobileOpen && (
         <div
-          className="absolute inset-0 bg-charcoal"
+          className="fixed inset-0 z-[55] md:hidden"
           onClick={() => setMobileOpen(false)}
-        />
-        {/* Menu content */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <div className="flex flex-col items-center gap-1 w-full px-8">
-            {navLinks.map((link, i) => (
+        >
+          {/* Full black background */}
+          <div className="absolute inset-0 bg-charcoal" />
+          {/* Content */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-6">
+            {navLinks.map((link) => (
               <button
                 key={link.href}
-                onClick={() => handleNav(link.href)}
-                className={`text-white/80 hover:text-white px-6 py-3.5 rounded-xl text-lg font-medium transition-all duration-200 hover:bg-white/10 w-full max-w-[300px] text-center active:bg-white/5 ${
-                  mobileOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-                }`}
-                style={{ transitionDelay: mobileOpen ? `${i * 60}ms` : "0ms" }}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  handleNav(link.href)
+                }}
+                className="text-white/80 hover:text-white w-full max-w-[280px] text-center py-4 text-lg font-medium hover:bg-white/10 rounded-xl transition-colors"
               >
                 {link.label}
               </button>
             ))}
             <button
-              onClick={() => handleNav("#reservaciones")}
-              className={`bg-gold hover:bg-gold-light text-chocolate font-bold px-10 py-3.5 rounded-full text-lg transition-all duration-300 mt-5 w-full max-w-[300px] text-center shadow-gold ${
-                mobileOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-              }`}
-              style={{ transitionDelay: mobileOpen ? `${navLinks.length * 60}ms` : "0ms" }}
+              onClick={(e) => {
+                e.stopPropagation()
+                handleNav("#reservaciones")
+              }}
+              className="bg-gold hover:bg-gold-light text-chocolate font-bold w-full max-w-[280px] text-center py-4 rounded-full text-lg mt-4 shadow-gold transition-colors"
             >
               Reservar
             </button>
           </div>
         </div>
-      </div>
+      )}
     </>
   )
 }
