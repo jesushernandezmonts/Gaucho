@@ -19,20 +19,19 @@ const categories = [
 ]
 
 export default function Menu() {
-  const [activeCat, setActiveCat] = useState("entradas")
+  const [activeCat, setActiveCat] = useState("desayunos")
   const { ref: headerRef } = useScrollReveal("fade-up")
-  const { ref: gridRef } = useScrollReveal("fade-up")
 
   const activeItems = menuItems.find((c) => c.category === activeCat)?.items || []
 
   return (
     <section id="menu" className="py-14 sm:py-20 md:py-28 bg-dark-section relative overflow-hidden">
-      {/* Efectos decorativos */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-gold/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-white/[0.02] rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-        <div ref={headerRef} className={`text-center mb-8 sm:mb-14`}>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 relative">
+        {/* Header */}
+        <div ref={headerRef} className="text-center mb-8 sm:mb-14">
           <span className="inline-block text-[10px] sm:text-xs font-semibold tracking-[3px] uppercase text-gold bg-gold/15 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-2 sm:mb-4">
             Nuestra Cocina
           </span>
@@ -44,7 +43,7 @@ export default function Menu() {
           </div>
         </div>
 
-        {/* Categories - scrollable horizontally on mobile */}
+        {/* Categories */}
         <div className="flex flex-nowrap sm:flex-wrap justify-start sm:justify-center gap-1.5 sm:gap-2 mb-6 sm:mb-10 overflow-x-auto pb-1 sm:pb-0 scrollbar-none -mx-4 sm:mx-0 px-4 sm:px-0">
           {categories.map((cat) => (
             <button
@@ -61,23 +60,25 @@ export default function Menu() {
           ))}
         </div>
 
-        {/* Grid - 1 col on mobile, 2 on sm, 3 on lg */}
-        <div ref={gridRef} className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5`}>
+        {/* Menu List - Clean restaurant style */}
+        <div className="max-w-3xl mx-auto">
           {activeItems.map((item, i) => (
             <div
               key={item.name}
-              className="flex gap-2.5 sm:gap-3 bg-white/[0.04] border border-white/[0.06] rounded-xl p-2.5 sm:p-3.5 transition-all duration-300 hover:bg-white/[0.07] hover:border-gold/20 hover:-translate-y-1 cursor-default hover:shadow-gold"
-              style={{ animation: `menuItemIn 0.4s ease-out ${i * 0.05}s both` }}
+              className={`flex items-start justify-between gap-4 px-1 py-3 sm:py-4 border-b border-white/[0.06] ${
+                i % 2 === 0 ? "bg-white/[0.02] -mx-3 px-4 sm:-mx-4 sm:px-5 rounded-lg" : ""
+              }`}
+              style={{ animation: `menuItemIn 0.3s ease-out ${i * 0.03}s both` }}
             >
-              <div className="w-[72px] sm:w-[90px] h-[72px] sm:h-[90px] shrink-0 rounded-lg overflow-hidden">
-                <img src={item.image} alt={item.name} loading="lazy" className="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
-              </div>
-              <div className="flex-1 min-w-0 flex flex-col justify-center">
-                <h4 className="font-display text-sm sm:text-base md:text-lg text-white flex justify-between items-start gap-1.5">
-                  <span className="truncate leading-tight">{item.name}</span>
-                  <span className="font-body text-xs sm:text-sm md:text-base font-bold text-gold shrink-0 leading-tight">${item.price}</span>
-                </h4>
-                <p className="text-white/50 text-[11px] sm:text-sm mt-0.5 sm:mt-1 leading-snug sm:leading-relaxed line-clamp-2">{item.desc}</p>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-baseline gap-2">
+                  <h4 className="font-display text-sm sm:text-base md:text-lg text-white font-semibold">{item.name}</h4>
+                  <span className="hidden sm:block flex-1 h-px border-b border-dashed border-white/10 min-w-[20px]" />
+                  <span className="font-body text-xs sm:text-sm md:text-base font-bold text-gold shrink-0">${item.price}</span>
+                </div>
+                {item.desc && (
+                  <p className="text-white/40 text-[11px] sm:text-sm mt-0.5 sm:mt-1 leading-relaxed">{item.desc}</p>
+                )}
               </div>
             </div>
           ))}
