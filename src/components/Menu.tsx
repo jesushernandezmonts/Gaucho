@@ -5,11 +5,17 @@ import { menuItems } from "@/lib/constants"
 import useScrollReveal from "@/lib/useScrollReveal"
 
 const categories = [
-  { key: "entradas", label: "Entradas" },
-  { key: "carnes", label: "Carnes" },
+  { key: "desayunos", label: "Desayunos" },
+  { key: "mexicanos", label: "Platillos Mexicanos" },
   { key: "pastas", label: "Pastas" },
-  { key: "postres", label: "Postres" },
-  { key: "vinos", label: "Vinos" },
+  { key: "pizzas", label: "Pizzas" },
+  { key: "parrilla", label: "Parrilla" },
+  { key: "sopas", label: "Sopas" },
+  { key: "ensaladas", label: "Ensaladas" },
+  { key: "sandwiches", label: "Sandwiches" },
+  { key: "guarniciones", label: "Guarniciones" },
+  { key: "bebidas", label: "Bebidas" },
+  { key: "cocteles", label: "Cocteles" },
 ]
 
 export default function Menu() {
