@@ -29,9 +29,9 @@ export default function Menu() {
       <div className="absolute top-20 left-10 w-72 h-72 bg-gold/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-white/[0.02] rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
         {/* Header */}
-        <div ref={headerRef} className="text-center mb-8 sm:mb-14">
+        <div ref={headerRef} className="text-center mb-6 sm:mb-10">
           <span className="inline-block text-[10px] sm:text-xs font-semibold tracking-[3px] uppercase text-gold bg-gold/15 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-2 sm:mb-4">
             Nuestra Cocina
           </span>
@@ -60,25 +60,18 @@ export default function Menu() {
           ))}
         </div>
 
-        {/* Menu List - Clean restaurant style */}
-        <div className="max-w-3xl mx-auto">
+        {/* Grid - responsive columns */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
           {activeItems.map((item, i) => (
             <div
               key={item.name}
-              className={`flex items-start justify-between gap-4 px-1 py-3 sm:py-4 border-b border-white/[0.06] ${
-                i % 2 === 0 ? "bg-white/[0.02] -mx-3 px-4 sm:-mx-4 sm:px-5 rounded-lg" : ""
-              }`}
+              className="flex gap-2 bg-white/[0.04] border border-white/[0.06] rounded-xl p-2.5 transition-all duration-200 hover:bg-white/[0.07] hover:border-gold/20 hover:-translate-y-0.5 cursor-default"
               style={{ animation: `menuItemIn 0.3s ease-out ${i * 0.03}s both` }}
             >
-              <div className="flex-1 min-w-0">
-                <div className="flex items-baseline gap-2">
-                  <h4 className="font-display text-sm sm:text-base md:text-lg text-white font-semibold">{item.name}</h4>
-                  <span className="hidden sm:block flex-1 h-px border-b border-dashed border-white/10 min-w-[20px]" />
-                  <span className="font-body text-xs sm:text-sm md:text-base font-bold text-gold shrink-0">${item.price}</span>
-                </div>
-                {item.desc && (
-                  <p className="text-white/40 text-[11px] sm:text-sm mt-0.5 sm:mt-1 leading-relaxed">{item.desc}</p>
-                )}
+              <img src={item.image} alt={item.name} loading="lazy" className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 rounded-lg object-cover" />
+              <div className="flex-1 min-w-0 flex flex-col justify-center">
+                <h4 className="text-xs sm:text-sm text-white font-semibold leading-tight truncate">{item.name}</h4>
+                <span className="text-[11px] sm:text-xs font-bold text-gold mt-0.5">${item.price}</span>
               </div>
             </div>
           ))}
